@@ -12,7 +12,6 @@ const TestComponent = () => {
             name: 'Test Product - 500g',
             price: 15.99,
             image: 'test.jpg',
-            category: 'food' // Добавляем обязательное поле category
         }, 2)
     }
 

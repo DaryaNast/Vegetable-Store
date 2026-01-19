@@ -11,14 +11,23 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
     const addToCart = (product: Product, quantity: number) => {
-        const newItem: CartItem = {
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            quantity: quantity
-        }
-        setItems([...items, newItem]);
+        if (quantity <= 0) return;
+        setItems(prevItems => {
+            const existingItem = prevItems.find(item => item.id === product.id)
+            if (existingItem) {
+                return prevItems.map(item => item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item )
+        } else {
+                const newItem: CartItem = {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                }
+                return [...prevItems, newItem];
+                }
+            }
+        )
     }
 
     const updateQuantity = (id: number, quantity: number) => {

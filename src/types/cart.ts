@@ -16,6 +16,6 @@ export interface CartContentType {
     addToCart: (product: Product, quantity: number) => void;
     updateQuantity: (id: number, quantity: number) => void;
     removeFromCart: (id: number) => void;
-    clearCart: (id: number) => void;
+    clearCart: () => void;
 }
 
